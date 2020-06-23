@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('Lint HTML') {
-      steps {
-        sh 'tidy -q -e index.html'
+      parallel {
+        stage('Lint HTML') {
+          steps {
+            sh 'tidy -q -e index.html'
+          }
+        }
+
+        stage('') {
+          steps {
+            sh 'sudo apt-get install -y tidy'
+          }
+        }
+
       }
     }
 
