@@ -5,13 +5,13 @@ pipeline {
       parallel {
         stage('Lint HTML') {
           steps {
-            sh 'tidy -q -e index.html'
+            sh 'sudo apt-get install -y tidy'
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
-            sh 'sudo apt-get install -y tidy'
+            sh 'tidy -q -e *.html'
           }
         }
 
